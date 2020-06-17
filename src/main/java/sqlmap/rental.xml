@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+    <mapper namespace="Rental">
+    	<resultMap type="Rental" id="result">
+    		<result property="bid" column="bid"/>
+    		<result property="mname" column="mname"/>
+    		<result property="bname" column="bname"/>
+    		<result property="bcontent" column="bcontent"/>
+    		<result property="rdate" column="rdate"/>
+    	</resultMap>
+    <select id="selectAllR" resultMap="result">
+    	select * from rental
+    </select>	
+    <insert id="insertRentalB" parameterType="Rental">
+    	insert into rental(bid,mname,bname,bcontent,rdate) values(#{bid},#{mname},#{bname},#{bcontent},now())
+    </insert>
+    <select id="selectBookRdate" parameterType="String" resultType="Date">
+    	select rdate from rental where book.id=#{book.id}
+    </select>
+    </mapper>
