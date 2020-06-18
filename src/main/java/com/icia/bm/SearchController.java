@@ -23,17 +23,8 @@ public class SearchController {
 		
 		String bname = request.getParameter("bname");
 		List<Book> list = bookDAO.search(bname);
-		System.out.println(bookDAO.countResult(bname));
-		if(bookDAO.countResult(bname)==0) {
-			model.addAttribute("msg", "조회결과없음");
-		}else {
-			model.addAttribute("size", list.size());
-				for(int i = 0 ; i < list.size(); i++) {
-					model.addAttribute("bid"+i, list.get(i).getId());
-					model.addAttribute("bname"+i, list.get(i).getName());
-					model.addAttribute("bcontent"+i, list.get(i).getContent());
-			}
-		}
+		System.out.println(bookDAO.countResult(bname)+"hi");
+		model.addAttribute("list",list);
 		
 		return "searchResult";
 	}

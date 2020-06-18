@@ -99,10 +99,10 @@ public class BookDAO {
 		List<Book> list = null;
 		SqlSession session = sqlSessionFactory.openSession();
 		try {
-			if(session.selectList("Book.selectAll", bookname)==null) {
+			if(session.selectList("Book.search", bookname)==null) {
 				
 			}else {
-				list = session.selectList("Book.selectAll",bookname);
+				list = session.selectList("Book.search",bookname);
 			}
 		}finally {
 			session.close();

@@ -46,16 +46,12 @@
  
 
   <!-- Search Result -->
-  
-<%
-	System.out.println(request.getAttribute("msg"));
-	for(int i = 0; i < (Integer)request.getAttribute("size") ; i++){
-		
-		out.print("<p>"+request.getAttribute("bid")+"</p>");
-		out.print("<p>"+request.getAttribute("bname"+"</p>"));
-		out.print("<p>"+request.getAttribute("bcontent")+"</p>");
-	}
-%>
+ <c:forEach var="mylist" items="${list}">
+	${mylist.id}
+	${mylist.name}
+	${mylist.content}
+</c:forEach>
+
 
   <!-- Footer -->
 <jsp:include page="/WEB-INF/views/include/footer.jsp" flush="false" />

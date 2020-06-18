@@ -31,6 +31,9 @@
 	<select id="searchIdName" parameterType="String" resultType="String">
 		select id from book where name=#{name}
 	</select>
+	<select id="search" resultMap="result" parameterType="String">
+		select * from book where name=#{name}
+	</select>
 	<select id="searchContent" parameterType="String" resultType="String">
 		select content from book where name=#{name}
 	</select>
@@ -38,7 +41,7 @@
 		update book set rnum='1' where id=#{id}
 	</update>
 	<select id="searchBookname" parameterType="String" resultType="String">
-		select name from book where name=#{name}
+		select * from book where name=#{name}
 	</select>
 	<select id="countBook" parameterType="String" resultType="int">
 		select count(#{name}) from book;
