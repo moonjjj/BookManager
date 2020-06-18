@@ -53,10 +53,9 @@ public class MemberDAO {
 		SqlSession session = sqlsessionFactory.openSession();
 		try {
 			if(session.selectOne("Member.selectMemberID", numm)==null) {
-				System.out.println("해당 id가 없습니다.");
+				
 			}else {
 				idx = session.selectOne("Member.selectMemberID",numm);
-				
 			}
 		}finally {
 			session.close();
@@ -69,7 +68,7 @@ public class MemberDAO {
 		SqlSession session = sqlsessionFactory.openSession();
 		try {
 			if(session.selectOne("Member.selectMemberPASS", mpasss)==null) {
-				System.out.println("해당 id가 없습니다.");
+				
 			}else {
 				idx = session.selectOne("Member.selectMemberPASS",mpasss);
 				

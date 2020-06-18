@@ -40,5 +40,7 @@
 	<select id="searchBookname" parameterType="String" resultType="String">
 		select name from book where name=#{name}
 	</select>
-
+	<select id="countBook" parameterType="String" resultType="int">
+		select count(#{name}) from book;
+	</select>
 </mapper>

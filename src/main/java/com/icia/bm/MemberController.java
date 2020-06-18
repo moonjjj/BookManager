@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -30,28 +31,32 @@ public class MemberController {
 			return "login";
 		}
 	}
-	@RequestMapping(value = "/loginAction", method = {RequestMethod.POST})
-	public String loginAction(HttpServletRequest request, HttpServletResponse response) throws IOException {
+	@RequestMapping(value = "/loginAction", method = {RequestMethod.GET, RequestMethod.POST})
+	public String loginAction(HttpServletRequest request, HttpServletResponse response,Model model) throws IOException {
 		
 		request.setCharacterEncoding("utf-8");
 		response.setContentType("text/html;charset=utf-8");
-		
-		MemberDAO memberDAO = new MemberDAO(MyBatisConnectionFactory.getSqlSessionFactory());
-		
 		String mid = request.getParameter("mid");
 		String mpass = request.getParameter("mpass");
-		String memberid = memberDAO.searchmid(mid);
-		String memberpass = memberDAO.searchpass(memberid);
-		
-		
-		if(mid.equals(memberid)&&mpass.equals(memberpass)) {
-			HttpSession session = request.getSession();
-			session.setAttribute("isLogon", true);
-			session.setAttribute("mid", mid);
-			return "redirect:/";
-		}else {
-			return "login";
+		try {
+			MemberDAO memberDAO = new MemberDAO(MyBatisConnectionFactory.getSqlSessionFactory());
+			String memberid = memberDAO.searchmid(mid);
+			String memberpass = memberDAO.searchpass(memberid);
+			if(mid.equals(memberid)&&mpass.equals(memberpass)) {
+				HttpSession session = request.getSession();
+				session.setAttribute("isLogon", true);
+				session.setAttribute("mid", mid);
+				return "redirect:/";
+			}else {
+				model.addAttribute("msg","아이디나 비밀번호가 다릅니다.");
+	            model.addAttribute("url","/bm/login");
+			}
+		}catch(NullPointerException e) {
+			model.addAttribute("msg","아이디나 비밀번호가 다릅니다.");
+            model.addAttribute("url","/bm/login");
 		}
+		return "/redirectt";
+		
 	}
 	@RequestMapping(value = "/join", method = RequestMethod.GET)
 	public String join() {
@@ -74,6 +79,10 @@ public class MemberController {
 		member.setMname(mname);
 		member.setEtc(etc);
 		memberDAO.insertMember(member);
+		
+		HttpSession session = request.getSession();
+		session.setAttribute("isLogon", true);
+		session.setAttribute("mid",mid);
 		
 		return "redirect:/";
 	}

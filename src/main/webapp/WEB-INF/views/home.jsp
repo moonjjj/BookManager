@@ -26,7 +26,7 @@
   <link href="resources/css/landing-page.min.css" rel="stylesheet">
   
   <!-- Main CSS -->
-  <link rel="stylesheet" href="/resources/css/maincss.css">
+  <link rel="stylesheet" href="resources/css/maincss.css">
 </head>
 <script>
   const slideList = document.querySelector(".slide-container");

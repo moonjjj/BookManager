@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
-<nav class="navbar navbar-light bg-light static-top">
-    <div class="container">
+<nav class="navbar navbar-light bg-light static-top" style="text-align:left;">
+    <div class="container" style="width:150px;display:inline-block;margin:0;">
       <a class="navbar-brand" href="#"><i  style="color: palevioletred; padding-right: 5px;"class="fas fa-book"></i>Ãóµµ¼­°ü</a>
     </div>
     <form>

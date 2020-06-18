@@ -1,3 +1,4 @@
+<%@page import="org.springframework.ui.Model"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -47,8 +48,13 @@
   <!-- Search Result -->
   
 <%
-String id = request.getParameter("name");
-
+	System.out.println(request.getAttribute("msg"));
+	for(int i = 0; i < (Integer)request.getAttribute("size") ; i++){
+		
+		out.print("<p>"+request.getAttribute("bid")+"</p>");
+		out.print("<p>"+request.getAttribute("bname"+"</p>"));
+		out.print("<p>"+request.getAttribute("bcontent")+"</p>");
+	}
 %>
 
   <!-- Footer -->

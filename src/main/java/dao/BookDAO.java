@@ -1,15 +1,15 @@
-/* Mybatis»ç¿ë½Ã ¼ø¼­
- * 0. SqlSessionFactoryBulider : ¼³Á¤ Á¤º¸ ÀÐ¾î¼­ SqlSessionFactory ¸¸µå´Â ¿ªÇÒ
- * 1. SqlSessionFactory »ý¼º : Mybatis¿Í Sql¼­¹ö¸¦ ¿¬°áÇÏ´Â °´Ã¼,SqlSessionÀ» ¸¸µå´Â ¿ªÇÒ
- * 2. SqlSession »ý¼º(½ÇÁ¦ ÁúÀÇ¹®½ÇÇà) : µ¥ÀÌÅÍº£ÀÌ½º ÁúÀÇ¹®À» È°¿ëÇÏ±âÀ§ÇÑ Å¬·¡½º »ý¼º
+/* Mybatisï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+ * 0. SqlSessionFactoryBulider : ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ð¾î¼­ SqlSessionFactory ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+ * 1. SqlSessionFactory ï¿½ï¿½ï¿½ï¿½ : Mybatisï¿½ï¿½ Sqlï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½ ï¿½ï¿½Ã¼,SqlSessionï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+ * 2. SqlSession ï¿½ï¿½ï¿½ï¿½(ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ç¹ï¿½ï¿½ï¿½ï¿½ï¿½) : ï¿½ï¿½ï¿½ï¿½ï¿½Íºï¿½ï¿½Ì½ï¿½ ï¿½ï¿½ï¿½Ç¹ï¿½ï¿½ï¿½ È°ï¿½ï¿½ï¿½Ï±ï¿½ï¿½ï¿½ï¿½ï¿½ Å¬ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
  *    - selectList() 
  *    - selectOne()
  *    - insert()
  *    - update()
  *    - delete()
  * 
- * ¸¶ÀÌ¹ÙÆ¼½º¸¦ ºÒ·¯¼­ ÁúÀÇ¹®À» ½ÇÇà ÇÏ´Â °÷
- * ÀüÃ¼Á¶È¸, ¼±ÅÃÁ¶È¸, ÇàÃß°¡, Çà¼öÁ¤, Çà»èÁ¦
+ * ï¿½ï¿½ï¿½Ì¹ï¿½Æ¼ï¿½ï¿½ï¿½ï¿½ ï¿½Ò·ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ç¹ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ï´ï¿½ ï¿½ï¿½
+ * ï¿½ï¿½Ã¼ï¿½ï¿½È¸, ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È¸, ï¿½ï¿½ï¿½ß°ï¿½, ï¿½ï¿½ï¿½ï¿½ï¿½, ï¿½ï¿½ï¿½ï¿½ï¿½
  */
 package dao;
 
@@ -23,15 +23,15 @@ import model.Book;
 
 public class BookDAO {
 	Scanner sc = new Scanner(System.in);
-//	ÇÊµå
+//	ï¿½Êµï¿½
 	private SqlSessionFactory sqlSessionFactory = null;
-//	»ý¼ºÀÚ¿¡ SqlSessionFactory¸¦ »ý¼º
+//	ï¿½ï¿½ï¿½ï¿½ï¿½Ú¿ï¿½ SqlSessionFactoryï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	public BookDAO(SqlSessionFactory sqlSessionFactory) {
 		this.sqlSessionFactory = sqlSessionFactory;
 	}
-//	Ã¥(check)ÀÇ ÀüÃ¼Á¶È¸
+//	Ã¥(check)ï¿½ï¿½ ï¿½ï¿½Ã¼ï¿½ï¿½È¸
 	public List<Book> selectAll() {
-	 	List<Book> list = null; //ÀüÃ¼Á¶È¸½Ã ¸®½ºÆ®º¸°ü
+	 	List<Book> list = null; //ï¿½ï¿½Ã¼ï¿½ï¿½È¸ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ï¿½ï¿½
 		
 	 	SqlSession session = sqlSessionFactory.openSession();
 		
@@ -95,29 +95,28 @@ public class BookDAO {
 		}
 	}
 	
-	public String search(String bookname) {
-		String idx=null;
+	public List<Book> search(String bookname) {
+		List<Book> list = null;
 		SqlSession session = sqlSessionFactory.openSession();
 		try {
-			if(session.selectOne("Book.searchOne", bookname)==null) {
-				System.out.println("ÇØ´ç bookid°¡ ¾ø½À´Ï´Ù.");
-			}else {
-				idx = session.selectOne("Book.searchOne",bookname);
+			if(session.selectList("Book.selectAll", bookname)==null) {
 				
+			}else {
+				list = session.selectList("Book.selectAll",bookname);
 			}
 		}finally {
 			session.close();
 		}
-		return idx;
+		return list;
 	}
 	
-//	booknameÀ» ÀÌ¿ëÇØ¼­ bookidÈ£Ãâ
+//	booknameï¿½ï¿½ ï¿½Ì¿ï¿½ï¿½Ø¼ï¿½ bookidÈ£ï¿½ï¿½
 	public String searchIdName(String bookname) {
 		String idx=null;
 		SqlSession session = sqlSessionFactory.openSession();
 		try {
 			if(session.selectOne("Book.searchIdName", bookname)==null) {
-				System.out.println("ÇØ´ç bookid°¡ ¾ø½À´Ï´Ù.");
+				System.out.println("ï¿½Ø´ï¿½ bookidï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½.");
 			}else {
 				idx = session.selectOne("Book.searchIdName",bookname);
 				
@@ -133,7 +132,7 @@ public class BookDAO {
 		SqlSession session = sqlSessionFactory.openSession();
 		try {
 			if(session.selectOne("Book.searchBookname", bookname)==null) {
-				System.out.println("ÇØ´ç Ã¥ÀÌ ¾ø½À´Ï´Ù.");
+				System.out.println("ï¿½Ø´ï¿½ Ã¥ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½.");
 			}else {
 				idx = session.selectOne("Book.searchBookname",bookname);
 				
@@ -149,7 +148,7 @@ public class BookDAO {
 		SqlSession session = sqlSessionFactory.openSession();
 		try {
 			if(session.selectOne("Book.searchContent", bname)==null) {
-				System.out.println("ÇØ´ç id°¡ ¾ø½À´Ï´Ù.");
+				System.out.println("ï¿½Ø´ï¿½ idï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½.");
 			}else {
 				idx = session.selectOne("Book.searchContent",bname);
 				
@@ -158,6 +157,17 @@ public class BookDAO {
 			session.close();
 		}
 		return idx;
+	}
+	
+	public int countResult(String bname) {
+		int num =0;
+		SqlSession session = sqlSessionFactory.openSession();
+		try {
+			num = session.selectOne("Book.countBook",bname);
+		}finally {
+			session.close();
+		}
+		return num;
 	}
 	
 	
