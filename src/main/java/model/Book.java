@@ -5,7 +5,14 @@ public class Book {
     private String name;
     private String content;
     private int rnum;
+    private String thumbnail;
     
+	public String getThumbnail() {
+		return thumbnail;
+	}
+	public void setThumbnail(String thumbnail) {
+		this.thumbnail = thumbnail;
+	}
 	public String getContent() {
 		return content;
 	}
@@ -32,8 +39,10 @@ public class Book {
 	}
 	@Override
 	public String toString() {
-		return "Book [id=" + id + ", name=" + name + ", content=" + content + ", rnum=" + rnum + "]";
+		return "Book [id=" + id + ", name=" + name + ", content=" + content + ", rnum=" + rnum + ", thumbnail="
+				+ thumbnail + "]";
 	}
+	
 	
     
     

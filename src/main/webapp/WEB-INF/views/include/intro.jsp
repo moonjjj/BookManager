@@ -5,6 +5,7 @@
   <div class="container">
     <div class="row">
       <div class="col-lg-4">
+    <a href="/bm/bookSearchAll" style="text-decoration:none;color:black;">
         <div class="features-icons-item mx-auto mb-5 mb-lg-0 mb-lg-3">
           <div class="features-icons-icon d-flex">
             <i class="fab fa-adn m-auto text-primary"></i>
@@ -12,6 +13,7 @@
           <h3>도서 전체 조회</h3>
           <p class="lead mb-0">This theme will look great on any device, no matter the size!</p>
         </div>
+    </a>
       </div>
       <div class="col-lg-4">
         <div class="features-icons-item mx-auto mb-5 mb-lg-0 mb-lg-3">

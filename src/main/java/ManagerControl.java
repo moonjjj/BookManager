@@ -12,13 +12,13 @@ public class ManagerControl {
 	
 	public void mControl(){
 		while (done) {
-			System.out.println("======°ü¸®ÀÚ MENU======");
-			System.out.print("1.È¸¿øÁ¶È¸  2.Ã¥ Á¶È¸  3.Ã¥ Ãß°¡  4.Ã¥ ¼öÁ¤  5.Ã¥ »èÁ¦ 6.´ë¿©Á¶È¸ 7.Á¾·á");
+			System.out.println("======ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ MENU======");
+			System.out.print("1.È¸ï¿½ï¿½ï¿½ï¿½È¸  2.Ã¥ ï¿½ï¿½È¸  3.Ã¥ ï¿½ß°ï¿½  4.Ã¥ ï¿½ï¿½ï¿½ï¿½  5.Ã¥ ï¿½ï¿½ï¿½ï¿½ 6.ï¿½ë¿©ï¿½ï¿½È¸ 7.ï¿½ï¿½ï¿½ï¿½");
 			int sel = Integer.parseInt(sc.nextLine());
 			
 			switch (sel) {
 			case 1:
-				System.out.println("1.ÀüÃ¼È¸¿øÁ¶È¸ 2.ÀÌ¸§À¸·Î È¸¿øÁ¶È¸");
+				System.out.println("1.ï¿½ï¿½Ã¼È¸ï¿½ï¿½ï¿½ï¿½È¸ 2.ï¿½Ì¸ï¿½ï¿½ï¿½ï¿½ï¿½ È¸ï¿½ï¿½ï¿½ï¿½È¸");
 				int selnumm = Integer.parseInt(sc.nextLine());
 				if(selnumm==1) {
 					memberControl.selectAMember();
@@ -34,10 +34,10 @@ public class ManagerControl {
 				bookControl.insertBook();
 				break;
 			case 4:
-				bookControl.updateBook();
+//				bookControl.updateBook();
 				break;
 			case 5:
-				bookControl.deleteBook();
+//				bookControl.deleteBook();
 				break;
 			case 6:
 				rentalControl.selectRental();

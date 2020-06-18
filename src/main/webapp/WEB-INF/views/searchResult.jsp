@@ -27,7 +27,7 @@
   <link href="resources/css/landing-page.min.css" rel="stylesheet">
   
   <!-- Main CSS -->
-  <link rel="stylesheet" href="/resources/css/maincss.css">
+  <link rel="stylesheet" href="resources/css/maincss.css">
 </head>
 <script>
   const slideList = document.querySelector(".slide-container");
@@ -46,13 +46,29 @@
  
 
   <!-- Search Result -->
+  <table class="result_search">
  <c:forEach var="mylist" items="${list}">
-	${mylist.id}
-	${mylist.name}
-	${mylist.content}
+ 	<tr>
+ 		<td style="padding:50px 0;" rowspan="2" width="300" height="300"><img src="resources/thumbnail/${mylist.thumbnail}" width="300"></td>
+		<td height="70" style="padding:50px 0 0 30px;">[${mylist.id}] ${mylist.name}
+		<c:set var="rnum" value="${mylist.rnum}"/>
+		<c:choose>
+			<c:when test="${rnum==0}">
+			<span style="color:blue">대여가능</span>
+			</c:when>
+			<c:when test="${rnum==1}">
+			<span style="color:red">대여불가</span>
+			</c:when>
+		</c:choose>
+		</td>
+	</tr>
+	<tr>
+		<td style="vertical-align:top;padding:50px 0 0 30px;">${mylist.content}</td>
+	</tr>
 </c:forEach>
-
-
+  </table>
+  
+  
   <!-- Footer -->
 <jsp:include page="/WEB-INF/views/include/footer.jsp" flush="false" />
 

@@ -9,6 +9,7 @@
 		<result property="name" column="name" />
 		<result property="content" column="content" />
 		<result property="rnum" column="rnum" />
+		<result property="thumbnail" column="thumbnail"/>
 	</resultMap>
 	<select id="selectAll" resultMap="result">
 		select * from book
@@ -32,7 +33,7 @@
 		select id from book where name=#{name}
 	</select>
 	<select id="search" resultMap="result" parameterType="String">
-		select * from book where name=#{name}
+		select id,name,content,rnum,thumbnail from book where name=#{name}
 	</select>
 	<select id="searchContent" parameterType="String" resultType="String">
 		select content from book where name=#{name}

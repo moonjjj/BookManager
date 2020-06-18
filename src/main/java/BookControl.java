@@ -19,10 +19,10 @@ public class BookControl {
 	boolean done = true;
 	
 	public void selectBook() {
-		System.out.print("1.ÀüÃ¼Á¶È¸ 2.°³ÀÎÁ¶È¸");
+		System.out.print("1.ï¿½ï¿½Ã¼ï¿½ï¿½È¸ 2.ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È¸");
 		int sel2 = Integer.parseInt(sc.nextLine());
 		if (sel2 == 1) {
-//	             ÀüÃ¼Á¶È¸
+//	             ï¿½ï¿½Ã¼ï¿½ï¿½È¸
 			booklist = bookDAO.selectAll();
 			for (Book binfo : booklist) {
 				System.out.println();
@@ -32,8 +32,8 @@ public class BookControl {
 				System.out.println("Ã¥ rnum : " + binfo.getRnum());
 			}
 		} else if (sel2 == 2) {
-//			¼±ÅÃÁ¶È¸
-			System.out.print("¼±ÅÃÁ¶È¸ id : ");
+//			ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È¸
+			System.out.print("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È¸ id : ");
 			String id = sc.nextLine();
 			book = bookDAO.selectById(id);
 			try {
@@ -42,18 +42,18 @@ public class BookControl {
 				System.out.println("Ã¥ Content : " + book.getContent());
 				System.out.println("Ã¥ rnum : " + book.getRnum());
 			} catch (NullPointerException e) {
-				System.out.println("ÇØ´ç id°¡ ¾ø½À´Ï´Ù.");
+				System.out.println("ï¿½Ø´ï¿½ idï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½.");
 			}
 		}
 	}
 	
 	public void insertBook() {
 		System.out.println();
-		System.out.print("Ãß°¡ÇÒ id : ");
+		System.out.print("ï¿½ß°ï¿½ï¿½ï¿½ id : ");
 		String id = sc.nextLine();
-		System.out.print("Ãß°¡ÇÒ name : ");
+		System.out.print("ï¿½ß°ï¿½ï¿½ï¿½ name : ");
 		String name = sc.nextLine();
-		System.out.print("Ãß°¡ÇÒ content : ");
+		System.out.print("ï¿½ß°ï¿½ï¿½ï¿½ content : ");
 		String content = sc.nextLine();
 		
 		book.setId(id);
@@ -65,50 +65,50 @@ public class BookControl {
 		
 	}
 	
-	public void updateBook() {
-		try {
-			Book book = new Book();
-			System.out.print("¼öÁ¤ÇÒ id : ");
-			String id = sc.nextLine();
-			String idr = bookDAO.search(id);
-			if(idr != null) {
-				System.out.println(idr+"Ã¥ <¼öÁ¤>");
-				
-				System.out.print("¼öÁ¤ÇÒ name : ");
-				String name = sc.nextLine();
-				System.out.print("¼öÁ¤ÇÒ content : ");
-				String content = sc.nextLine();
-				
-				book.setId(idr);
-				book.setName(name);
-				book.setContent(content);
-				
-				bookDAO.update(book);
-			}
-			
-		}catch(Exception e) {
-			e.printStackTrace();
-		}
-	}
+//	public void updateBook() {
+//		try {
+//			Book book = new Book();
+//			System.out.print("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ id : ");
+//			String id = sc.nextLine();
+//			String idr = bookDAO.search(id);
+//			if(idr != null) {
+//				System.out.println(idr+"Ã¥ <ï¿½ï¿½ï¿½ï¿½>");
+//				
+//				System.out.print("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ name : ");
+//				String name = sc.nextLine();
+//				System.out.print("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ content : ");
+//				String content = sc.nextLine();
+//				
+//				book.setId(idr);
+//				book.setName(name);
+//				book.setContent(content);
+//				
+//				bookDAO.update(book);
+//			}
+//			
+//		}catch(Exception e) {
+//			e.printStackTrace();
+//		}
+//	}
 	
-	public void deleteBook() {
-		try {
-			System.out.print("»èÁ¦ÇÒ id : ");
-			String id = sc.nextLine();
-			String idr = bookDAO.search(id);
-			if(idr != null) {
-				bookDAO.delete(idr);
-				System.out.println("»èÁ¦µÇ¾ú½À´Ï´Ù.");
-			}
-		}catch(Exception e) {
-			e.printStackTrace();
-		}
-	}
+//	public void deleteBook() {
+//		try {
+//			System.out.print("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ id : ");
+//			String id = sc.nextLine();
+//			String idr = bookDAO.search(id);
+//			if(idr != null) {
+//				bookDAO.delete(idr);
+//				System.out.println("ï¿½ï¿½ï¿½ï¿½ï¿½Ç¾ï¿½ï¿½ï¿½ï¿½Ï´ï¿½.");
+//			}
+//		}catch(Exception e) {
+//			e.printStackTrace();
+//		}
+//	}
 	
 	public void rentalBook(String mid) {
 		Rental rental = new Rental();
 		selectBook();
-		System.out.print("´ë¿©ÇÒ Ã¥ ÀÌ¸§À» ÀÔ·ÂÇÏ¼¼¿ä : ");
+		System.out.print("ï¿½ë¿©ï¿½ï¿½ Ã¥ ï¿½Ì¸ï¿½ï¿½ï¿½ ï¿½Ô·ï¿½ï¿½Ï¼ï¿½ï¿½ï¿½ : ");
 		String rbname = sc.nextLine();
 		String rbnameR = bookDAO.searchBookName(rbname);
 		if(rbnameR!=null) {

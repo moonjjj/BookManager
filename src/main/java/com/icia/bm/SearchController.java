@@ -22,9 +22,17 @@ public class SearchController {
 		BookDAO bookDAO = new BookDAO(MyBatisConnectionFactory.getSqlSessionFactory());
 		
 		String bname = request.getParameter("bname");
-		List<Book> list = bookDAO.search(bname);
-		System.out.println(bookDAO.countResult(bname)+"hi");
-		model.addAttribute("list",list);
+
+		model.addAttribute("list",bookDAO.search(bname));
+		
+		return "searchResult";
+	}
+	@RequestMapping(value = "/bookSearchAll", method = RequestMethod.GET)
+	public String searchbookAll(HttpServletRequest request, HttpServletResponse response,Model model) {
+		BookDAO bookDAO = new BookDAO(MyBatisConnectionFactory.getSqlSessionFactory());
+		
+
+		model.addAttribute("list",bookDAO.selectAll());
 		
 		return "searchResult";
 	}

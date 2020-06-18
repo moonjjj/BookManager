@@ -23,7 +23,7 @@
 	
 		<property name="username" value="root" />
 	
-		<property name="password" value="romeo93!" /> 
+		<property name="password" value="12345" /> 
 	
 	</bean>
 	
