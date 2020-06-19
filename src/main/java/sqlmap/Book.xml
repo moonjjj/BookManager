@@ -21,7 +21,7 @@
 		insert into book (id,name,content,rnum) values (#{id}, #{name}, #{content},0)
 	</insert>
 	<update id="update" parameterType="Book" >
-		update book set name=#{name},content=#{content} where id=#{id}
+		update book set name=#{name},content=#{content},rnum=#{rnum},thumbnail=#{thumbnail} where id=#{id}
 	</update>
 	<delete id="delete" parameterType="String">
 		delete from book where id=#{id}
