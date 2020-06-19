@@ -20,9 +20,9 @@ public class AdminController {
 	@RequestMapping(value = "/admin", method = RequestMethod.GET)
 	public String adminLogin(HttpServletRequest request, HttpServletResponse response,Model model) {
 		
-		return "adminlogin";
+		return "admin/login";
 	}
-	@RequestMapping(value = "/adminAction", method = {RequestMethod.GET, RequestMethod.POST})
+	@RequestMapping(value = "/admin/loginaction", method = {RequestMethod.GET, RequestMethod.POST})
 	public String adminAction(HttpServletRequest request, HttpServletResponse response,Model model) throws UnsupportedEncodingException {
 		
 		request.setCharacterEncoding("utf-8");
@@ -41,7 +41,7 @@ public class AdminController {
 					HttpSession session = request.getSession();
 					session.setAttribute("isLogon", true);
 					session.setAttribute("mid", mid);
-					return "redirect:/adminHome";
+					return "redirect:/admin/home";
 				}else {
 					model.addAttribute("msg","아이디나 비밀번호가 다릅니다.");
 		            model.addAttribute("url","/bm/admin");
@@ -54,24 +54,14 @@ public class AdminController {
 		return "/redirectt";
 		
 	}
-	@RequestMapping(value = "/adminHome", method = RequestMethod.GET)
+	@RequestMapping(value = "/admin/home", method = RequestMethod.GET)
 	public String adminHome(HttpServletRequest request, HttpServletResponse response,Model model) {
 		HttpSession session = request.getSession();
 		String mid = (String)session.getAttribute("mid");
 		if(mid.equals("root")) {
-			return "adminhome";
+			return "admin/home";
 		}else {
 			return "redirect:/admin";
 		}
 	}
-	
-	@RequestMapping(value = "/bookControl", method = RequestMethod.GET)
-	public String bookControl(HttpServletRequest request, HttpServletResponse response,Model model) {
-		BookDAO bookDAO = new BookDAO(MyBatisConnectionFactory.getSqlSessionFactory());
-
-		model.addAttribute("list",bookDAO.selectAll());
-		
-		return "bookcontrol";
-	}
-	
 }
