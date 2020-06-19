@@ -16,7 +16,6 @@ public class MemberDAO {
 
 	public List<Member> selectAllMember() {
 		List<Member> list = null;
-		Member member = new Member();
 		SqlSession session = sqlsessionFactory.openSession();
 		try {
 			list = session.selectList("Member.selectAllMember");

@@ -1,13 +1,8 @@
-import java.util.List;
 import java.util.Scanner;
 
-import org.apache.ibatis.session.SqlSessionFactory;
 
-import dao.BookDAO;
 import dao.ManagerDAO;
 import dao.MemberDAO;
-import dao.PlayUserDAO;
-import model.Book;
 import mybaits.MyBatisConnectionFactory;
 
 public class Main {
@@ -19,17 +14,16 @@ public class Main {
 		ManagerControl managerC = new ManagerControl();
 		PlayUserControl playuserC = new PlayUserControl();
 		ManagerDAO managerDAO = new ManagerDAO(MyBatisConnectionFactory.getSqlSessionFactory());
-		PlayUserDAO playuserDAO = new PlayUserDAO(MyBatisConnectionFactory.getSqlSessionFactory());
 		
 		boolean done = true;
 		
 		while(done) {
 			System.out.println("======Menu======");
-			System.out.println("1.°ü¸®ÀÚ 2.»ç¿ëÀÚ 3.»ç¿ëÀÚ È¸¿ø°¡ÀÔ 4.ÇÁ·Î±×·¥ Á¾·á");
+			System.out.println("1.ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ 2.ï¿½ï¿½ï¿½ï¿½ï¿½ 3.ï¿½ï¿½ï¿½ï¿½ï¿½ È¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ 4.ï¿½ï¿½ï¿½Î±×·ï¿½ ï¿½ï¿½ï¿½ï¿½");
 			int msel = Integer.parseInt(sc.nextLine());
 			switch(msel) {
 			case 1:
-				System.out.println("<<°ü¸®ÀÚ ·Î±×ÀÎ>>");
+				System.out.println("<<ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Î±ï¿½ï¿½ï¿½>>");
 				while(true) {
 					System.out.print("id : ");
 					String gid = sc.nextLine();
@@ -41,9 +35,9 @@ public class Main {
 					if(gid.equals(mgname) && mgname!=null) {
 						String mgpass = managerDAO.searchPass(mgname);
 						if(!gpass.equals(mgpass)) {
-							System.out.println("==> ºñ¹Ð¹øÈ£°¡ ¸ÂÁö ¾Ê½À´Ï´Ù.");
+							System.out.println("==> ï¿½ï¿½Ð¹ï¿½È£ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ê½ï¿½ï¿½Ï´ï¿½.");
 						}else {
-							System.out.println("·Î±×ÀÎ ¼º°ø!!");
+							System.out.println("ï¿½Î±ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½!!");
 							managerC.mControl();
 							break;
 						}
@@ -52,7 +46,7 @@ public class Main {
 				}
 				break;
 			case 2:
-				System.out.println("<<»ç¿ëÀÚ ·Î±×ÀÎ>>");
+				System.out.println("<<ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Î±ï¿½ï¿½ï¿½>>");
 				System.out.print("id : ");
 				String uid = sc.nextLine();
 				System.out.println("password : ");
@@ -63,19 +57,19 @@ public class Main {
 				if(uid.equals(memberid) && memberid!=null) {
 					String mpass = memberDAO.searchpass(memberid);
 					if(!upass.equals(mpass)) {
-						System.out.println("==> ºñ¹Ð¹øÈ£°¡ ¸ÂÁö ¾Ê½À´Ï´Ù.");
+						System.out.println("==> ï¿½ï¿½Ð¹ï¿½È£ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ê½ï¿½ï¿½Ï´ï¿½.");
 					}else {
-						System.out.println("·Î±×ÀÎ ¼º°ø!!");
+						System.out.println("ï¿½Î±ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½!!");
 						playuserC.pControl(memberid);
 					}
 				}
 				break;
 			case 3:
-				System.out.println("<»ç¿ëÀÚ È¸¿ø°¡ÀÔ>>");
+				System.out.println("<ï¿½ï¿½ï¿½ï¿½ï¿½ È¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½>>");
 				memberC.insertMember();
 				break;
 			case 4:
-				System.out.println("ÇÁ·Î±×·¥ Á¾·á");
+				System.out.println("ï¿½ï¿½ï¿½Î±×·ï¿½ ï¿½ï¿½ï¿½ï¿½");
 				done = false;
 				System.exit(0);
 			}

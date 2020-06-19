@@ -1,7 +1,5 @@
 import java.util.Scanner;
 
-import model.Book;
-
 public class ManagerControl {
 	Scanner sc = new Scanner(System.in);
 	boolean done = true;

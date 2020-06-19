@@ -1,4 +1,3 @@
-import java.sql.Date;
 import java.util.List;
 import java.util.Scanner;
 
@@ -6,7 +5,6 @@ import dao.BookDAO;
 import dao.MemberDAO;
 import dao.RentalDAO;
 import model.Book;
-import model.Rental;
 import mybaits.MyBatisConnectionFactory;
 
 public class BookControl {
@@ -106,7 +104,6 @@ public class BookControl {
 //	}
 	
 	public void rentalBook(String mid) {
-		Rental rental = new Rental();
 		selectBook();
 		System.out.print("�뿩�� å �̸��� �Է��ϼ��� : ");
 		String rbname = sc.nextLine();

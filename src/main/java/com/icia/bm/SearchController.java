@@ -1,7 +1,5 @@
 package com.icia.bm;
 
-import java.util.List;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -13,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import mybaits.MyBatisConnectionFactory;
 
 import dao.BookDAO;
-import model.Book;
 
 @Controller
 public class SearchController {
