@@ -49,7 +49,7 @@
   <table class="result_search">
  <c:forEach var="mylist" items="${list}">
  	<tr>
- 		<td style="padding:50px 0;" rowspan="2" width="300" height="300"><img src="resources/thumbnail/${mylist.thumbnail}" width="300"></td>
+ 		<td style="padding:50px 0;" rowspan="3" width="300" height="300"><img src="resources/thumbnail/${mylist.thumbnail}" width="300"></td>
 		<td height="70" style="padding:50px 0 0 30px;">[${mylist.id}] ${mylist.name}
 		<c:set var="rnum" value="${mylist.rnum}"/>
 		<c:choose>
@@ -64,6 +64,9 @@
 	</tr>
 	<tr>
 		<td style="vertical-align:top;padding:50px 0 0 30px;">${mylist.content}</td>
+	</tr>
+	<tr>
+	<td>button / button</td>
 	</tr>
 </c:forEach>
   </table>
