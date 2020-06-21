@@ -11,9 +11,8 @@
 <configuration>
 
 	<typeAliases>		
-
-
-
+		<typeAlias alias="Book" type="com.icia.bm.bean.Book"/>
+        <typeAlias alias="Member" type="com.icia.bm.bean.Member"/>
 	</typeAliases>
 
 </configuration>

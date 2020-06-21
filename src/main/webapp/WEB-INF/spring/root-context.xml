@@ -17,9 +17,9 @@
 
 	 <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource"> 
 	
-		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
+		<property name="driverClassName" value="com.mysql.cj.jdbc.Driver" />
 	
-		<property name="url" value="jdbc:mysql://127.0.0.1:3306/jdbctest" />
+		<property name="url" value="jdbc:mysql://127.0.0.1:3306/jdbctest?serverTimezone=UTC" />
 	
 		<property name="username" value="root" />
 	
@@ -33,7 +33,13 @@
 	
 		<property name="configLocation" value="classpath:/mybatisConfig.xml" />
 	
-		<property name="mapperLocations" value="classpath:/mappers/mapper.xml" />		
+		<property name="mapperLocations" value="classpath:/mappers/*Mapper.xml" />		
+
+	</bean>
+	
+	<bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate" destroy-method="clearCache">
+
+		<constructor-arg name="sqlSessionFactory" ref="sqlSessionFactory"></constructor-arg>
 
 	</bean>
 	

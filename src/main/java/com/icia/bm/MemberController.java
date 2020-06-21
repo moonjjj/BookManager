@@ -2,6 +2,7 @@ package com.icia.bm;
 
 import java.io.IOException;
 
+import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -11,12 +12,15 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import dao.MemberDAO;
-import model.Member;
-import mybaits.MyBatisConnectionFactory;
+import com.icia.bm.bean.Member;
+import com.icia.bm.dao.MemberDAO;
 
 @Controller
 public class MemberController {
+	
+	@Inject
+	MemberDAO memberDAO;
+	
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	public String login(HttpServletRequest request, HttpServletResponse response)  {
 		HttpSession session = request.getSession();
@@ -35,7 +39,6 @@ public class MemberController {
 		String mid = request.getParameter("mid");
 		String mpass = request.getParameter("mpass");
 		try {
-			MemberDAO memberDAO = new MemberDAO(MyBatisConnectionFactory.getSqlSessionFactory());
 			String memberid = memberDAO.searchmid(mid);
 			String memberpass = memberDAO.searchpass(memberid);
 			if(mid.equals(memberid)&&mpass.equals(memberpass)) {
@@ -62,7 +65,6 @@ public class MemberController {
 	@RequestMapping(value = "/joinAction", method = RequestMethod.POST)
 	public String joinAction(HttpServletRequest request, HttpServletResponse response) throws IOException{
 		
-		MemberDAO memberDAO = new MemberDAO(MyBatisConnectionFactory.getSqlSessionFactory());
 		Member member = new Member();
 		request.setCharacterEncoding("utf-8");
 		String mid = request.getParameter("mid");
