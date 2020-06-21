@@ -1,6 +1,6 @@
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
 <!DOCTYPE html>
 <html>
@@ -28,12 +28,7 @@
   <!-- Main CSS -->
   <link rel="stylesheet" href="resources/css/maincss.css">
 </head>
-<script>
-  const slideList = document.querySelector(".slide-container");
-  const slideContents = document.querySelectorAll(".col-lg-4");
-  const slideBtnNext = document.querySelector('.right'); // next button
-  const slideBtnPrev = document.querySelector('.left'); // prev button
-</script>
+
 <body>
 
   <!-- Navigation -->
