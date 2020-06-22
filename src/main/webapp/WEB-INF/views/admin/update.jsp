@@ -39,6 +39,18 @@
     		
     	}
     </style>
+    <script>
+    function btn_click(){
+    	const ex_file = document.getElementById("ex_file");
+    	const thumb = document.getElementById("input_thumb");
+    	console.log(ex_file.value);
+    	const fileValue = ex_file.value.split("\\");
+    	const fileName = fileValue[fileValue.length-1];
+    	console.log(fileName);
+    	
+    	thumb.value = fileName;
+    }
+    </script>
   </head>
 
   <body id="page-top">
@@ -206,19 +218,44 @@
 					<tr>
 						<td>Thumbnail</td>
 						<td>
-						<input type="text" name="thumbnail" value="${thumbnail}">
+						<input type="text" id="input_thumb" name="thumbnail" value="${thumbnail}">
 						</td>
 					</tr>
 					<tr>
 					<td colspan="2" style="text-align:right;">
 					<input style="display:inline-block;" type="submit" value="update">
+					
+					<!-- Button trigger modal -->
+					<input style="display:inline-block;" type="button" value="file"  data-toggle="modal" data-target="#myModal">
+					
 					</td>
 					</tr>
 				</table>
             </form>
-			
            </div>
+		
 
+		<!-- Modal -->
+		<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		  <div class="modal-dialog">
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <h4 class="modal-title" id="myModalLabel">Choose Thumbnail</h4>
+		        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+		      </div>
+		      <div class="modal-body">
+		        <div class="filebox">
+		        	<input type="file" id="ex_file"> 
+		        </div>
+		      </div>
+		      <div class="modal-footer">
+		        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+		        <button type="button" class="btn btn-primary" onclick="btn_click();">Save changes</button>
+		      </div>
+		    </div>
+		  </div>
+		</div>
+		
         <!-- Footer -->
         <footer class="sticky-footer bg-white">
           <div class="container my-auto">

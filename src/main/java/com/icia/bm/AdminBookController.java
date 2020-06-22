@@ -12,29 +12,41 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.icia.bm.service.BookService;
+import com.icia.bm.service.MemberService;
 
 @Controller
 public class AdminBookController {
 	
 	@Inject
 	BookService bookService;
+	@Inject
+	MemberService memberService;
 	
 	
 	@RequestMapping(value = "/admin/mb", method = RequestMethod.GET)
-	public String manageBook(Model model) {
-
-		bookService.bookList(model);
+	public String manageBook(HttpServletRequest request, Model model) {
+		if(memberService.authAdmin(request)) {
+			
+			bookService.bookList(model);
+			
+			return "admin/mb";
+		}
+		return "redirect:/admin";
 		
-		return "admin/mb";
 	}
 	
 
 	@RequestMapping(value = "/admin/mbUpdate", method = RequestMethod.GET)
 	public String bookUpdate(HttpServletRequest request, HttpServletResponse response,Model model) {
 		
-		bookService.updateBookList(request, model);
+		if(memberService.authAdmin(request)) {
+			
+			bookService.updateBookList(request, model);
+			
+			return "admin/update";
+		}
+		return "redirect:/admin";
 		
-		return "admin/update";
 	}
 	
 	@RequestMapping(value = "/admin/updateAction", method = RequestMethod.POST)

@@ -42,11 +42,20 @@ public class AdminMemberController {
 		return "redirect:/admin";
 	}
 	@RequestMapping(value = "/admin/mm", method = RequestMethod.GET)
-	public String manageMember() {
+	public String manageMember(HttpServletRequest request, Model model) {
+		if(memberService.authAdmin(request)) {
+			memberService.showMembers(model);
+			return "admin/mm";
+		}
+		return "redirect:/admin";
 		
-		return "admin/mm";
 	}
 	
+	@RequestMapping(value = "/admin/deleteAction", method = RequestMethod.POST)
+	public String deleteMember(HttpServletRequest request) {
+		memberService.deleteMember(request);
+		return "redirect:/admin/mm";
+	}
 	
 	@RequestMapping(value = "/admin/logout", method = RequestMethod.GET)
 	public String logOut(HttpServletRequest request) {

@@ -123,6 +123,15 @@ public class MemberService {
 		
 	}
 	
+	public void showMembers(Model model) {
+		model.addAttribute("list",memberDAO.selectAllMember());
+	}
+	
+	public void deleteMember(HttpServletRequest request) {
+		String mid = request.getParameter("mid");
+		memberDAO.delete(mid);
+	}
+	
 	public void logout(HttpServletRequest request) {
 		HttpSession session = request.getSession();
 		session.invalidate();
