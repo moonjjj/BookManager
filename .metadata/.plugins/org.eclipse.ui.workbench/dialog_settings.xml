@@ -14,10 +14,11 @@
 			<item value="org.eclipse.ui.actions"/>
 		</list>
 		<list key="textEntries">
-			<item value="1"/>
+			<item value="2"/>
 		</list>
 		<list key="textArray">
 			<item value="switch"/>
+			<item value="sw"/>
 		</list>
 	</section>
 </section>
