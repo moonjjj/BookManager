@@ -2,34 +2,31 @@ package com.icia.bm;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.icia.bm.dao.BookDAO;
+import com.icia.bm.service.BookService;
 
 @Controller
 public class SearchController {
 	
 	@Inject
-	BookDAO bookDAO;
+	BookService bookService;
 	
 	@RequestMapping(value = "/bookSearch", method = RequestMethod.GET)
-	public String searchbook(HttpServletRequest request, HttpServletResponse response,Model model) {
+	public String searchbook(HttpServletRequest request, Model model) {
 		
-		String bname = request.getParameter("bname");
-
-		model.addAttribute("list",bookDAO.search(bname));
+		bookService.searchBook(request, model);
 		
 		return "searchResult";
 	}
 	@RequestMapping(value = "/bookSearchAll", method = RequestMethod.GET)
-	public String searchbookAll(HttpServletRequest request, HttpServletResponse response,Model model) {
+	public String searchbookAll(Model model) {
 
-		model.addAttribute("list",bookDAO.selectAll());
+		bookService.bookList(model);
 		
 		return "searchResult";
 	}

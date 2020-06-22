@@ -11,20 +11,19 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.icia.bm.bean.Book;
-import com.icia.bm.dao.BookDAO;
+import com.icia.bm.service.BookService;
 
 @Controller
 public class AdminBookController {
 	
 	@Inject
-	BookDAO bookDAO;
+	BookService bookService;
 	
 	
 	@RequestMapping(value = "/admin/mb", method = RequestMethod.GET)
-	public String manageBook(HttpServletRequest request, HttpServletResponse response,Model model) {
+	public String manageBook(Model model) {
 
-		model.addAttribute("list",bookDAO.selectAll());
+		bookService.bookList(model);
 		
 		return "admin/mb";
 	}
@@ -32,48 +31,20 @@ public class AdminBookController {
 
 	@RequestMapping(value = "/admin/mbUpdate", method = RequestMethod.GET)
 	public String bookUpdate(HttpServletRequest request, HttpServletResponse response,Model model) {
-		String bid = request.getParameter("bid");
-		String bname=request.getParameter("bname");
-		String bcontent=request.getParameter("bcontent");
-		String rnum = request.getParameter("rnum");
-		String thumbnail = request.getParameter("thumbnail");
 		
-		model.addAttribute("bid", bid);
-		model.addAttribute("bname", bname);
-		model.addAttribute("bcontent", bcontent);
-		model.addAttribute("rnum", rnum);
-		model.addAttribute("thumbnail", thumbnail);
-		
+		bookService.updateBookList(request, model);
 		
 		return "admin/update";
 	}
 	
 	@RequestMapping(value = "/admin/updateAction", method = RequestMethod.POST)
-	public String updateAction(HttpServletRequest request, HttpServletResponse response,Model model) throws UnsupportedEncodingException {
-		request.setCharacterEncoding("utf-8");
-		Book book = new Book();
-		String bid = request.getParameter("bid");
-		String bname=request.getParameter("bname");
-		String bcontent=request.getParameter("bcontent");
-		int rnum = Integer.parseInt(request.getParameter("rnum"));
-		String thumbnail = request.getParameter("thumbnail");
+	public String updateAction(HttpServletRequest request, Model model) throws UnsupportedEncodingException {
 		
-		if(bookDAO.selectById(bid)==null || bookDAO.selectById(bid).getId().equals(bid)) {
-			book.setId(bid);
-			book.setName(bname);
-			book.setContent(bcontent);
-			book.setRnum(rnum);
-			book.setThumbnail(thumbnail);
-			bookDAO.update(book);
-			model.addAttribute("msg","정보수정 성공!");
-			model.addAttribute("url","/bm/admin/mb");
+		if(bookService.updateAction(request, model)) {
+			
 			return "redirectt";
-		}else {
-			
-			model.addAttribute("msg","정보수정 실패/ 이미존재하는 아이디입니다.");
-			return "historyback";
-			
 		}
-		
+			
+		return "historyback";
 	}
 }
