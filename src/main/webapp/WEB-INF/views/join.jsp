@@ -32,7 +32,6 @@
 					<form name="join" action="joinAction" method="post" onsubmit="return validate()">
 						<div class="input-group form-group">
 							<div class="input-group-prepend">
-							sdaf
 								<span class="input-group-text"><i class="fas fa-user"></i></span>
 							</div>
 							<input type="text" id="mname" name="mname" class="form-control" placeholder="username">
